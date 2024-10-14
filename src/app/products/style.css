@@ -1,0 +1,23 @@
+
+.grid {
+    padding:20px;
+    width:fit-content;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    height:200px;
+    row-gap: 10px;
+}
+
+.card {
+    background-color: #f7f7f7;
+    display:flex;
+    /* flex-direction: row; */
+    padding:10px;
+    border-radius: 6px;
+    margin:10px 0
+}
+
+.image {
+    background-color: #f7f7f7;
+    padding:20px;
+}
