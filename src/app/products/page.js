@@ -19,7 +19,12 @@ const Page = async () => {// Server Side Data Fetch, by default this will be cac
 
   return (
     <div className="page">
-        <div className="hdrpanel">Online Shopping</div>
+       <div className="hdrcontainer">
+       <div className="techdesc">NextJs Demo of Server Side Rendering(SSR)</div>
+       <div className="hdrpanel">Online Shopping</div>
+
+       </div>
+        
         <div className="vspacer"></div>
 
       {data?.map(({ id, title, description, price, images }) => {

@@ -19,10 +19,10 @@
     justify-content: space-between;
 }
 
-.hdrpanel {
-    background-color:lightslategray;
+.hdrcontainer {
+    background-color:#fff;
     color:#fff;
-    display:flex;
+    /* display:flex; */
     justify-content: center;
     align-items: center;
     height:40px;
@@ -30,6 +30,21 @@
     font-size:24px;
     position: fixed;
     width:1022px;
+}
+
+.hdrpanel {
+     
+        background-color:royalblue;
+        color:#fff;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:40px;
+        margin:0px 0;
+        font-size:24px;
+        position: fixed;
+        width:1022px;
+
 }
 
 .img {
@@ -44,7 +59,7 @@
 }
 
 .vspacer {
-    height:38px;
+    height:83px;
 }
 
 .prodInfo {
@@ -85,4 +100,16 @@
     border:none;
     border-radius:15px;
     cursor:pointer
+}
+
+.techdesc {
+    color: blue;
+    font-weight:bold;
+    display: flex;
+    justify-content: center;
+    /* margin: 10px; */
+    font-size: 20px;
+    background-color: #fff;
+    height: 36px;
+    align-items: center;
 }
