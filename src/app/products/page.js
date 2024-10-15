@@ -18,11 +18,14 @@ const Page = async () => {// Server Side Data Fetch, by default this will be cac
   let data = await response.json()
 
   return (
-    <>
+    <div className="page">
+        <div className="hdrpanel">Online Shopping</div>
+        <div className="vspacer"></div>
+
       {data?.map(({ id, title, description, price, images }) => {
         const imgsrc = images[0]
 
-        return (
+        return <>
           <div className="card">
             <div className="img">
               <Image
@@ -37,12 +40,14 @@ const Page = async () => {// Server Side Data Fetch, by default this will be cac
                 <li className="title">{title}</li>
                 <li className="desc">{description}</li>
                 <li className="price">${price}</li>
+                <li><button className="addtocart">Add to Cart</button></li>
+
 
                 
               </ul>
             </div>
           </div>
-        )
+        </>
 
         //         return <div className="card" key={id}>
         //         <div className="card">
@@ -59,7 +64,7 @@ const Page = async () => {// Server Side Data Fetch, by default this will be cac
         //         </div>
         // </div>
       })}
-    </>
+    </div>
   )
 }
 
