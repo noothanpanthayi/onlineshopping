@@ -27,8 +27,8 @@ const Page = async () => {// Server Side Data Fetch, by default this will be cac
             <div className="img">
               <Image
                 src={imgsrc}
-                height={150}
-                width={150}
+                height={180}
+                width={180}
                 alt="images from web"
               />
             </div>

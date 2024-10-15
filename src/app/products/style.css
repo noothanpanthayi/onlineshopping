@@ -47,10 +47,16 @@
 }
 
 .price {
-    font-weight: bold;
+    font-size: 28px;
 }
 
 .prodInfo ul {
   padding:15px;
   list-style-type:none;
 }
+
+.prodInfo ul li {
+  margin: 20px;
+  }
+
+  
