@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import React, { Fragment } from 'react'
 import './style.css'
 import Image from 'next/image'
@@ -26,7 +26,7 @@ const Page = async () => {// Server Side Data Fetch, by default this will be cac
     <div className="page">
        <div className="hdrcontainer">
        <div className="techdesc">NextJs Demo of Server Side Rendering(SSR)</div>
-       <div className="hdrpanel">Online Shopping</div>
+       <div className="hdrpanel">Product Listing Page</div>
 
        </div>
         
@@ -50,7 +50,7 @@ const Page = async () => {// Server Side Data Fetch, by default this will be cac
                 <li className="title">{title}</li>
                 <li className="desc">{description}</li>
                 <li className="price">${price}</li>
-                <li><button onClick={()=>addtocart(title)} className="addtocart">Add to Cart</button></li>
+                {/* <li><button className="addtocart">Add to Cart</button></li> */}
 
 
                 
