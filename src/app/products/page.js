@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Page = async () => {// Server Side Data Fetch, by default this will be cached and 
   //pre rendered during the build
   let response = await fetch(
-    'https://api.escuelajs.co/api/v1/categories/2/products',
+    'https://api.escuelajs.co/api/v1/categories/3/products',
   )
 
   /* This will not cache the response
