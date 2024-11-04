@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Fragment } from "react";
 import Image from "next/image";
 
 const Product = ({ data }: any) => {
@@ -22,7 +22,7 @@ const Product = ({ data }: any) => {
         const imgsrc = images[0];
 
         return (
-          <>
+          <Fragment key={id}>
             <div className="card">
               <div className="img">
                 <Image
@@ -45,7 +45,7 @@ const Product = ({ data }: any) => {
                 </ul>
               </div>
             </div>
-          </>
+          </Fragment>
         );
       })}
     </>
