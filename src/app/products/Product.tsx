@@ -1,41 +1,55 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
 
+const Product = ({ data }: any) => {
+  const addToCart = () => {
+    alert("add to cart");
+  };
 
-const Product = ({data}:any) => {
+  type Props = {
+    id: string;
+    title: string;
+    description: string;
+    price: string;
+    images: string[];
+  };
 
-const addToCart=()=>{
-    alert("add to cart")
-}
-
-  return <>
-    {data?.map(({ id, title, description, price, images }) => {
+  return (
+    <>
+      {data?.map(({ id, title, description, price, images }: Props) => {
         const imgsrc = images[0];
 
-        return <>
-          <div className="card">
-            <div className="img">
-              <Image
-                src={imgsrc}
-                height={180}
-                width={180}
-                alt="images from web"
-              />
+        return (
+          <>
+            <div className="card">
+              <div className="img">
+                <Image
+                  src={imgsrc}
+                  height={180}
+                  width={180}
+                  alt="images from web"
+                />
+              </div>
+              <div className="prodInfo">
+                <ul>
+                  <li className="title">{title}</li>
+                  <li className="desc">{description}</li>
+                  <li className="price">${price}</li>
+                  <li>
+                    <button onClick={addToCart} className="addtocart">
+                      Add to Cart
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="prodInfo">
-              <ul>
-                <li className="title">{title}</li>
-                <li className="desc">{description}</li>
-                <li className="price">${price}</li>
-                <li><button onClick={addToCart} className="addtocart">Add to Cart</button></li>
-              </ul>
-            </div>
-          </div>
-        </>
+          </>
+        );
       })}
-  </>
-}
+    </>
+  );
+};
 
-export default Product
+export default Product;
