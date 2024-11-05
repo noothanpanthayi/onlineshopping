@@ -20,13 +20,13 @@ const Page = async () => {
     <div className="page">
       <div className="hdrcontainer">
         <div className="techdesc">
-          NextJs Demo of Server Side Rendering(SSR)
+        This NextJs AppRouter application makes an HTTP request to a free API url, renders the products list at the server-side and then sends to the client.
+        Once it reaches the client, it gets hydrated and Add to Cart button becomes active.
         </div>
-        <div className="hdrpanel">Product Listing Page</div>
+        <div className="hdrpanel">Product Listing Page <span className="subtitle">&nbsp;(NextJs Server Side Rendered)</span></div>
       </div>
 
       <div className="vspacer"></div>
-
       <Product data={data} />
     </div>
   );

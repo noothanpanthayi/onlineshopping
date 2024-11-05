@@ -104,12 +104,19 @@
 
 .techdesc {
     color: blue;
-    font-weight:bold;
+    background-color: #ffd814;
+    padding:30px 5px;
+    /* font-weight:bold; */
     display: flex;
     justify-content: center;
     /* margin: 10px; */
-    font-size: 20px;
+    line-height: 22px;
+    font-size:16px;
     background-color: #fff;
     height: 36px;
     align-items: center;
+}
+
+.subtitle{
+    font-size:16px;
 }

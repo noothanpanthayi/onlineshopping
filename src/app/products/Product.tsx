@@ -25,6 +25,7 @@ const Product = ({ data }: any) => {
             <div className="card">
               <div className="img">
                 <Image
+                  title={title}
                   src={image}
                   height={180}
                   width={180}
