@@ -13,20 +13,19 @@ const Product = ({ data }: any) => {
     title: string;
     description: string;
     price: string;
-    images: string[];
+    image: string;
   };
 
   return (
     <>
-      {data?.map(({ id, title, description, price, images }: Props) => {
-        const imgsrc = images[0];
-
+      {data?.map(({ id, title, description, price, image }: Props) => {
+        console.log("Image ", image);
         return (
           <Fragment key={id}>
             <div className="card">
               <div className="img">
                 <Image
-                  src={imgsrc}
+                  src={image}
                   height={180}
                   width={180}
                   alt="images from web"

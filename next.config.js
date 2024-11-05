@@ -2,6 +2,7 @@ module.exports = {
     images: {
       domains:[
      'cdn.dummyjson.com',
+     'fakestoreapi.com',
      'i.imgur.com'
       ],
       remotePatterns: [

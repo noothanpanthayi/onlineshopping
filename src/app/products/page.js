@@ -7,7 +7,7 @@ const Page = async () => {
   //pre rendered during the build
 
   let response = await fetch(
-    "https://api.escuelajs.co/api/v1/categories/3/products"
+    "https://fakestoreapi.com/products/"
   );
 
   const addtocart = (title) => {
