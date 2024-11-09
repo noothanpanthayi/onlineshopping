@@ -5,3 +5,9 @@
      { cache: 'no-store' }
   )
   */
+
+// let response = await fetch(
+  //   "https://fakestoreapi.com/products/"
+  // );
+
+  

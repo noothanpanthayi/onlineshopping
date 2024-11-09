@@ -1,11 +1,11 @@
 "use client";
 
-import React, { Fragment } from "react";
+import React, { ChangeEventHandler, Fragment } from "react";
 import Image from "next/image";
 
 const Product = ({ data }: any) => {
-  const addToCart = () => {
-    alert("add to cart");
+  const addToCart = (e:ChangeEventHandler|any) => {
+    alert(`${e.target.id} has been added to the cart`);
   };
 
   type Props = {
@@ -19,7 +19,6 @@ const Product = ({ data }: any) => {
   return (
     <>
       {data?.map(({ id, title, description, price, image }: Props) => {
-        console.log("Image ", image);
         return (
           <Fragment key={id}>
             <div className="card">
@@ -38,7 +37,7 @@ const Product = ({ data }: any) => {
                   <li className="desc">{description}</li>
                   <li className="price">${price}</li>
                   <li>
-                    <button onClick={addToCart} className="addtocart">
+                    <button id={title} onClick={addToCart} className="addtocart">
                       Add to Cart
                     </button>
                   </li>
