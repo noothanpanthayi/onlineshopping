@@ -24,7 +24,7 @@ const Page = async () => {
           This NextJs AppRouter application makes an HTTP request to it's backend server.
           Server queries the PostGreSQL database, renders the products list at the server-side and then sends to
           the client. Once it reaches the client, it gets hydrated and Add to
-          Cart button becomes active.Test.
+          Cart button becomes active.
         </div>
         <div className="hdrpanel">Product Listing Page</div>
       </div>
