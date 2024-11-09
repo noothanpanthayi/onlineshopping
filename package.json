@@ -2,21 +2,26 @@
   "name": "nextjsonlineshopping",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/noothanpanthayi/onlineshopping.git",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.10.0",
+    "next": "14.2.15",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.15"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "gh-pages": "^6.2.0",
+    "typescript": "^5"
   }
 }

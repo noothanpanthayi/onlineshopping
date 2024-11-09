@@ -1,8 +1,7 @@
 import {sql} from '@vercel/postgres';
-import { NextApiRequest, NextApiResponse } from "next";
 
 
-export async function GET(request:NextApiRequest, response:NextApiResponse) {
+export async function GET() {
 
   // try{
   //   await sql`insert into auto (make,model, price, year) values (
