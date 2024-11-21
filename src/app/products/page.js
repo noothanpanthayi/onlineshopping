@@ -7,15 +7,15 @@ const Page = async () => {
   //pre rendered during the build
 
   let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
-  let response = await fetch(`${localhost}/api`, { cache: "no-store" });
+  let response = await fetch(`${localhost}/api?mode=products`, { cache: "no-store" });
 
   const addtocart = (title) => {
+
     alert(`${title} has been added to cart!`);
   };
 
   let data = await response.json();
 
-  console.log("DATA ", data);
 
   return (
     <div className="page">

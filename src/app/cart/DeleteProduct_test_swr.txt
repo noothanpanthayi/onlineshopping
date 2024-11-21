@@ -1,0 +1,124 @@
+"use client";
+import React, { Fragment} from 'react';
+import Image from "next/image";
+import styles from './page.module.css';
+import { useRouter } from 'next/navigation';
+import { useSWR } from 'swr';
+
+const fetcher=async()=>{
+    let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
+    let response = await fetch(`${localhost}/api?mode=cart`, { cache: "no-store" });
+    let cartclient=await response.json();
+    return cartclient;
+}
+
+
+export const DeleteProduct=({cart}) => {
+  let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
+
+    const {data, error}=useSWR(`${localhost}/api?mode=cart`, fetcher);
+    if (error) return "An error has occured";
+    if (!data) return 'Loading';
+    
+const router=useRouter();
+// const {mutate}=useSWRConfig();
+
+
+    // const [state, setState]=useState({
+    //    cartclient:[]
+    // });
+
+    // const fetchData=async()=>{
+      
+    //     let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
+    //    let response = await fetch(`${localhost}/api?mode=cart`, { cache: "no-store" });
+
+    //     let cartclient=await response.json();
+
+    //     console.log("On Fetch Data ", cartclient);
+
+    //     setState(prevState=>{
+    //         return {
+    //             ...prevState,
+    //             cartclient
+    //         }
+    //     })
+
+
+    // }
+
+    // useEffect(()=>{
+    //     console.log("State ", state);
+    // })
+
+    // useEffect(()=>{
+    //     console.log("USEEFFECT CALLING FETCHDATA");
+    //    fetchData();
+    // },[cart.length, router.pathname, state.cartclient.length])
+
+    const deleteCart = async (e) => {
+     
+        try {
+          let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
+    
+          const configuration = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userid: "1001",
+              productid: parseInt(e.target.id),
+            }),
+          };
+    
+          const response = await fetch(`${localhost}/api?mode=del`, configuration);
+    
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          else {
+               console.log("calling mutate");
+             
+          }
+    
+          const data = await response.json();
+          mutate();
+        } catch (error) {
+          console.log("Error adding item to cart:", error);
+        }
+      };
+
+  return (
+    <div className={grid}>
+    <div className={title}>Shopping Cart</div>
+      <div>Sl.No</div>
+      <div>Product</div>
+      <div>Title</div>
+      <div>Action</div>
+
+      {
+        cart?.map(({id, userid, productid, title, image}, index)=>{
+          return <Fragment key={id}>
+                <div>{index+1}</div>
+                <Image className={imgFrame}
+                  title={title}
+                  src={image}
+                  height={100}
+                  width={100}
+                  alt="images from web"
+                />
+                <div>{title}</div>
+                <div id={productid} onClick={deleteCart} className={del}>🗑️</div>
+
+          </Fragment>
+        })
+      }
+    </div>
+   
+  )
+
+
+}
+
+const {grid, imgFrame, title, del}=styles;

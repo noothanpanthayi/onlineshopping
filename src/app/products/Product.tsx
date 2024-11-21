@@ -1,15 +1,46 @@
 "use client";
-
 import React, { ChangeEventHandler, Fragment } from "react";
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 
 const Product = ({ data }: any) => {
-  const addToCart = (e:ChangeEventHandler|any) => {
-    alert(`${e.target.id} has been added to the cart`);
+  const router=useRouter();
+  const addToCart = async (e: ChangeEventHandler | any) => {
+    try {
+      let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
+
+      const configuration = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userid: "1001",
+          productid: parseInt(e.target.id),
+        }),
+      };
+
+      const response = await fetch(`${localhost}/api`, configuration);
+      alert(`${e.target.title}\nhas been Added to the Cart`);
+      router.push('/cart');
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+    } catch (error) {
+      console.log("Error adding item to cart:", error);
+    }
   };
+
+  
+
+  
 
   type Props = {
     id: string;
+    productid: string;
     title: string;
     description: string;
     price: string;
@@ -18,35 +49,42 @@ const Product = ({ data }: any) => {
 
   return (
     <>
-      {data?.map(({ id, title, description, price, image }: Props) => {
-        return (
-          <Fragment key={id}>
-            <div className="card">
-              <div className="img">
-                <Image
-                  title={title}
-                  src={image}
-                  height={180}
-                  width={180}
-                  alt="images from web"
-                />
+      {data?.map(
+        ({ id, productid, title, description, price, image }: Props) => {
+          return (
+            <Fragment key={id}>
+              <div className="card">
+                <div className="img">
+                  <Image
+                    title={title}
+                    src={image}
+                    height={180}
+                    width={180}
+                    alt="images from web"
+                  />
+                </div>
+                <div className="prodInfo">
+                  <ul>
+                    <li className="title">{title}</li>
+                    <li className="desc">{description}</li>
+                    <li className="price">${price}</li>
+                    <li>
+                      <button
+                        id={productid}
+                        title={title}
+                        onClick={addToCart}
+                        className="addtocart"
+                      >
+                        Add to Cart
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div className="prodInfo">
-                <ul>
-                  <li className="title">{title}</li>
-                  <li className="desc">{description}</li>
-                  <li className="price">${price}</li>
-                  <li>
-                    <button id={title} onClick={addToCart} className="addtocart">
-                      Add to Cart
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Fragment>
-        );
-      })}
+            </Fragment>
+          );
+        }
+      )}
     </>
   );
 };
