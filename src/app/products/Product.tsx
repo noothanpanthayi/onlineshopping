@@ -1,6 +1,7 @@
 "use client";
 import React, { ChangeEventHandler, Fragment } from "react";
 import { useRouter } from 'next/navigation';
+import {getHost} from '../api/getHost';
 import Image from "next/image";
 
 const Product = ({ data }: any) => {
@@ -20,7 +21,7 @@ const Product = ({ data }: any) => {
         }),
       };
 
-      const response = await fetch(`${localhost}/api`, configuration);
+      const response = await fetch(`${getHost()}/api`, configuration);
       alert(`${e.target.title}\nhas been Added to the Cart`);
       router.push('/cart');
 
@@ -33,10 +34,6 @@ const Product = ({ data }: any) => {
       console.log("Error adding item to cart:", error);
     }
   };
-
-  
-
-  
 
   type Props = {
     id: string;

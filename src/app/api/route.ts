@@ -17,8 +17,6 @@ export async function GET(request: NextRequest) {
 
       const cartData = cart.rows;
       return Response.json(cartData);
-    case "del":
-      console.log("TO DELETE ", request)
   }
 }
 

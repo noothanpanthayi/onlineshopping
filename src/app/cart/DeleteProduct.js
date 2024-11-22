@@ -2,6 +2,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import {getHost} from '../api/getHost';
 import { useRouter } from "next/navigation";
 
 export const DeleteProduct = ({ cart }) => {
@@ -13,7 +14,7 @@ export const DeleteProduct = ({ cart }) => {
 
   const fetchData = async () => {
     let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
-    let response = await fetch(`${localhost}/api?mode=cart`, {
+    let response = await fetch(`${getHost()}/api?mode=cart`, {
       cache: "no-store",
     });
 
@@ -47,7 +48,7 @@ export const DeleteProduct = ({ cart }) => {
         }),
       };
 
-      const response = await fetch(`${localhost}/api?mode=del`, configuration);
+      const response = await fetch(`${getHost()}/api?mode=del`, configuration);
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
