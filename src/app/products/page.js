@@ -1,14 +1,16 @@
 import React, { Fragment } from "react";
 import "./style.css";
 import Product from "./Product";
+import {getHost} from '../api/getHost';
 
 const Page = async () => {
   // Server Side Data Fetch, by default this will be cached and
   //pre rendered during the build
 
-  let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
-  let response = await fetch(`${localhost}/api?mode=products`, { cache: "no-store" });
+  // let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
+  // let response = await fetch(`${localhost}/api?mode=products`, { cache: "no-store" });
 
+  let response = await fetch(`${getHost()}/api?mode=products`, { cache: "no-store" });
   const addtocart = (title) => {
 
     alert(`${title} has been added to cart!`);
