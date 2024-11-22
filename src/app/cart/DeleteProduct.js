@@ -33,7 +33,7 @@ export const DeleteProduct = ({ cart }) => {
   }, [cart.length, router.pathname]);
 
   const deleteCart = async (e) => {
-    if (!confirm(`Are you Sure you want to Delete:\n${e.target.title}?`)) return;
+    // if (!confirm(`Are you Sure you want to Delete:\n${e.target.title}?`)) return;
     try {
       let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
 
