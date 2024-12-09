@@ -4,6 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const mode = searchParams.get("mode");
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
   switch (mode) {
     case "products":
       const products = await sql`select * from products;`;
@@ -16,7 +21,7 @@ export async function GET(request: NextRequest) {
           FROM shoppingcart JOIN products ON shoppingcart.productid = products.productid;`;
 
       const cartData = cart.rows;
-      return Response.json(cartData);
+      return Response.json(cartData, {headers, status:200});
   }
 }
 
