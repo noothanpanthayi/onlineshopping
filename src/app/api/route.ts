@@ -9,6 +9,11 @@ export async function GET(request: NextRequest) {
     'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   };
+
+  if (request.method === 'OPTIONS') { 
+       return NextResponse.json({}, { headers, status: 204 }); 
+  }
+
   switch (mode) {
     case "products":
       const products = await sql`select * from products;`;
