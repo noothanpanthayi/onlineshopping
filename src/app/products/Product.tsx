@@ -1,11 +1,11 @@
 "use client";
 import React, { ChangeEventHandler, Fragment } from "react";
-import { useRouter } from 'next/navigation';
-import {getHost} from '../api/getHost';
+import { useRouter } from "next/navigation";
+import { getHost } from "../api/getHost";
 import Image from "next/image";
 
 const Product = ({ data }: any) => {
-  const router=useRouter();
+  const router = useRouter();
   const addToCart = async (e: ChangeEventHandler | any) => {
     try {
       let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
@@ -14,6 +14,9 @@ const Product = ({ data }: any) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*", 
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS", 
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
         },
         body: JSON.stringify({
           userid: "1001",
@@ -23,7 +26,7 @@ const Product = ({ data }: any) => {
 
       const response = await fetch(`${getHost()}/api`, configuration);
       alert(`${e.target.title}\nhas been Added to the Cart`);
-      router.push('/cart');
+      router.push("/cart");
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
