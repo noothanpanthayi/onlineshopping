@@ -1,7 +1,22 @@
-import { sql } from "@vercel/postgres";
+// import { sql } from "@vercel/postgres";
+
+import {Client} from 'pg';
+
 import { NextRequest, NextResponse } from "next/server";
 
+
+const client = new Client({ 
+  connectionString: process.env.POSTGRES_URL, 
+  ssl: { rejectUnauthorized: false
+  // ca: process.env.NODE_ENV === 'production' ? require('fs').readFileSync('./rds-combined-ca-bundle.pem').toString() : undefined, 
+  }
+});
+
+client.connect() .then(() => console.log('Connected to AWS PostgreSQL')) .catch(err => console.error('>>Connection error', err.stack));
+
+
 export async function GET(request: NextRequest) {
+  
   const { searchParams } = new URL(request.url);
   const mode = searchParams.get("mode");
   const headers = {
@@ -14,16 +29,17 @@ export async function GET(request: NextRequest) {
        return NextResponse.json({}, { headers, status: 204 }); 
   }
 
+
   switch (mode) {
     case "products":
-      const products = await sql`select * from products;`;
+      const products = await client.query(`select * from products`);
       const json = products.rows;
       return Response.json(json);
     case "cart":
       const cart =
-        await sql`SELECT shoppingcart.id, shoppingcart.userid, shoppingcart.productid, 
+        await client.query(`SELECT shoppingcart.id, shoppingcart.userid, shoppingcart.productid, 
           products.image, shoppingcart.quantity, products.title, products.price, products.description 
-          FROM shoppingcart JOIN products ON shoppingcart.productid = products.productid;`;
+          FROM shoppingcart JOIN products ON shoppingcart.productid = products.productid;`);
 
       const cartData = cart.rows;
       return Response.json(cartData, {headers, status:200});
@@ -38,8 +54,7 @@ export async function POST(request: NextRequest) {
  if (mode==="del"){
   console.log("DELETE RECORD ", id);
   try {
-    const result= await sql`
-    delete from shoppingcart where id=${id}`;
+    const result= await client.query(`delete from shoppingcart where id=${id}`)
     return NextResponse.json({message:'Item deleted successfully'}, {status:200})
   }catch(error){
     return NextResponse.json({error:'Internal Server Error'}, {status:500})
