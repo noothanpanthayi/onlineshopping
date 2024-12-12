@@ -8,8 +8,6 @@ const Product = ({ data }: any) => {
   const router = useRouter();
   const addToCart = async (e: ChangeEventHandler | any) => {
     try {
-      let localhost = process.env.NEXT_PUBLIC_LOCALHOST;
-
       const configuration = {
         method: "POST",
         headers: {

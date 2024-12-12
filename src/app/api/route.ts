@@ -36,10 +36,9 @@ export async function GET(request: NextRequest) {
       const json = products.rows;
       return Response.json(json);
     case "cart":
-      const cart =
-        await client.query(`SELECT shoppingcart.id, shoppingcart.userid, shoppingcart.productid, 
+      const cart = await client.query(`SELECT shoppingcart.id, shoppingcart.userid, shoppingcart.productid, 
           products.image, shoppingcart.quantity, products.title, products.price, products.description 
-          FROM shoppingcart JOIN products ON shoppingcart.productid = products.productid;`);
+          FROM shoppingcart JOIN products ON shoppingcart.productid = products.productid`);
 
       const cartData = cart.rows;
       return Response.json(cartData, {headers, status:200});
@@ -48,11 +47,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const { userid, productid, id } = await request.json();
+  
   const { searchParams } = new URL(request.url);
   const mode = searchParams.get("mode");
 
  if (mode==="del"){
-  console.log("DELETE RECORD ", id);
   try {
     const result= await client.query(`delete from shoppingcart where id=${id}`)
     return NextResponse.json({message:'Item deleted successfully'}, {status:200})
@@ -68,8 +67,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const result = await client.query(`
-     insert into shoppingcart (userid, productid) values (${userid}, ${productid})`);
+    const result = await client.query(`insert into shoppingcart (userid, productid) values (${userid}, ${productid})`);
     return NextResponse.json({ rowCount: result.rowCount }, { status: 201 });
   } catch (error) {
     console.error("Error inserting into shoppingcart:", error);
