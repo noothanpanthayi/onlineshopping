@@ -68,8 +68,8 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const result = await sql`
-     insert into shoppingcart (userid, productid) values (${userid}, ${productid})`;
+    const result = await client.query(`
+     insert into shoppingcart (userid, productid) values (${userid}, ${productid})`);
     return NextResponse.json({ rowCount: result.rowCount }, { status: 201 });
   } catch (error) {
     console.error("Error inserting into shoppingcart:", error);
