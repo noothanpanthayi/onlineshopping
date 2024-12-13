@@ -2,7 +2,7 @@
 .grid {
     display:grid;
     margin:0 auto;
-    width:900px;
+    max-width:900px;
     width:fit-width;
     background-color: #fff;
     grid-template-columns:100px 100px auto 70px;
