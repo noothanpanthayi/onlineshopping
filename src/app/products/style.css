@@ -113,7 +113,7 @@
     background-color: #fff;
     padding:10px 5px;
     /* font-weight:bold; */
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     /* margin: 10px; */
     line-height: 22px;
@@ -123,6 +123,11 @@
     align-items: center;
 }
 
+.techdesc a:link, a:visited {
+    text-decoration: underline;
+    color:green;
+    font-weight: bold
+}
 .subtitle{
     font-size:16px;
 }

@@ -20,10 +20,10 @@ const Page = async () => {
     <div className="page">
       <div className="hdrcontainer">
         <div className="techdesc">
-          This NextJs AppRouter application hosted on AWS Cloud, makes an HTTP request to it's backend server.
+          This NextJs AppRouter application hosted on AWS, makes an HTTP request to it's backend server.
           Server queries the PostGreSQL database, renders the products list at the server-side and then sends to
           the client. Once it reaches the client, it gets hydrated and Add to
-          Cart button becomes active.
+          Cart button becomes active. <a target="_blank" href="http://54.166.17.121/products">AWS EC2 Instance</a>
         </div>
         <div className="hdrpanel">Product Listing Page</div>
       </div>
